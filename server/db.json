@@ -13,22 +13,36 @@
       "password": "123",
       "name": "123",
       "createdAt": "11/7/2022"
+    },
+    {
+      "id": "1667907121088",
+      "email": "golub@gmail.com",
+      "password": "123",
+      "name": "Oleg",
+      "createdAt": "08.11.2022"
     }
   ],
   "notes": [
     {
-      "id": "1667850375219",
-      "userId": "1",
-      "title": "note3",
-      "body": "124412awdawd",
-      "createdAt": "11/7/2022"
+      "id": "1667907155552",
+      "userId": "1667907121088",
+      "title": "Todo for today",
+      "body": "123123123123123123123",
+      "createdAt": "08.11.2022"
     },
     {
-      "id": "1667850754133",
+      "id": "1667907163548",
+      "userId": "1667907121088",
+      "title": "123123123",
+      "body": "123123123123r32grgnr",
+      "createdAt": "08.11.2022"
+    },
+    {
+      "id": "1667909852602",
       "userId": "1",
-      "title": "Title1",
-      "body": "awdawdawwd",
-      "createdAt": "11/7/2022"
+      "title": "Test2",
+      "body": "mpkmfkpawmfkpmawpkd",
+      "createdAt": "08.11.2022"
     }
   ]
 }

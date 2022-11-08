@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useUserContext} from '../components/UserContext';
+import {getHTTPData} from '../utils/requests';
 
 export default function Login() {
     const userContext = useUserContext();
@@ -17,21 +18,21 @@ export default function Login() {
     );
 
     const handleLogin = useCallback(() => {
-        fetch(`http://localhost:5000/users?email=${email}&password=${password}`)
-            .then((r) => r.json())
-            .then((users) => {
-                if (users.length === 1) {
-                    setValid(true);
-                    userContext.setUser(users[0]);
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 500);
-                } else {
-                    setValid(false);
-                    setEmail('');
-                    setPassword('');
-                }
-            });
+        getHTTPData(
+            `http://localhost:5000/users?email=${email}&password=${password}`
+        ).then((users) => {
+            if (users.length === 1) {
+                setValid(true);
+                userContext.setUser(users[0]);
+                setTimeout(() => {
+                    navigate('/');
+                }, 500);
+            } else {
+                setValid(false);
+                setEmail('');
+                setPassword('');
+            }
+        });
     }, [email, navigate, password, userContext]);
 
     useEffect(() => {

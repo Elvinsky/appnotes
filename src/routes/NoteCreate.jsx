@@ -1,12 +1,15 @@
 import {useCallback, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import {useUserContext} from '../components/UserContext';
+import {postHTTP} from '../utils/requests';
 function NoteCreate() {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [valid, setValid] = useState(true);
     const navigate = useNavigate();
     const {user} = useUserContext();
+
     const handleChangeTitle = useCallback((e) => {
         setTitle(e.target.value);
     }, []);
@@ -18,26 +21,21 @@ function NoteCreate() {
             setValid(false);
             return;
         }
-        fetch(`http://localhost:5000/notes`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: Date.now().toString(),
-                userId: user.id,
-                title: title,
-                body: body,
-                createdAt: new Date().toLocaleDateString(),
-            }),
-        })
-            .then((r) => r.json())
-            .then(navigate('/notes'));
+        const note = {
+            id: Date.now().toString(),
+            userId: user.id,
+            title: title,
+            body: body,
+            createdAt: new Date().toLocaleDateString(),
+        };
+        postHTTP(`http://localhost:5000/notes`, note);
+        navigate('/notes');
         return;
     };
     return (
-        <div>
-            <div className="flex flex-col gap-1">
+        <div className="p-2 border-t border-black">
+            <BackButton url="/notes" />
+            <div className="flex flex-col gap-1 mt-1">
                 <input
                     placeholder="Title"
                     value={title}

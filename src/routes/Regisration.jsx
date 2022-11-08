@@ -1,5 +1,6 @@
 import {useCallback, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {getHTTPData, postHTTP} from '../utils/requests';
 
 function Registration() {
     const [password, setPassword] = useState('');
@@ -20,6 +21,13 @@ function Registration() {
     const handleChangeSecPassword = useCallback((e) => {
         setSecPassword(e.target.value);
     }, []);
+    const resetData = () => {
+        setValid(false);
+        setPassword('');
+        setEmail('');
+        setSecPassword('');
+        setName('');
+    };
     const handleRegister = () => {
         const user = {
             id: Date.now().toString(),
@@ -32,29 +40,16 @@ function Registration() {
             return;
         }
         if (secPassword === password) {
-            fetch(
+            getHTTPData(
                 `http://localhost:5000/users?email=${email}&password=${password}`
-            )
-                .then((r) => r.json())
-                .then((users) => {
-                    if (users.length === 0) {
-                        fetch('http://localhost:5000/users', {
-                            method: 'POST',
-                            body: JSON.stringify(user),
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                        }).then(() => {
-                            navigate('/login');
-                        });
-                    } else {
-                        setValid(false);
-                        setPassword('');
-                        setEmail('');
-                        setSecPassword('');
-                        setName('');
-                    }
-                });
+            ).then((users) => {
+                if (users.length === 0) {
+                    postHTTP('http://localhost:5000/users', user);
+                    navigate('/login');
+                } else {
+                    resetData();
+                }
+            });
         } else {
             setPasswordValid(false);
             setSecPassword('');

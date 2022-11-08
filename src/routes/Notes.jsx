@@ -2,11 +2,12 @@ import {useUserContext} from '../components/UserContext';
 import {Suspense, useCallback} from 'react';
 import Note from '../components/Note';
 import {Await, useNavigate} from 'react-router-dom';
+import {getHTTPData} from '../utils/requests';
 
 function notesLoader(userId) {
-    const notesPromise = fetch(
+    const notesPromise = getHTTPData(
         `http://localhost:5000/notes?userId=${userId}`
-    ).then((r) => r.json());
+    );
     return {notesPromise};
 }
 
@@ -33,6 +34,7 @@ function Notes() {
                                 <Note
                                     title={note.title}
                                     body={note.body}
+                                    preview={note.body.substring(0, 15) + '...'}
                                     key={note.id}
                                     id={note.id}
                                 />
