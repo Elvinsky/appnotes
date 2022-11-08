@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "name": "Nick",
+      "createdAt": "11/7/2022"
+    },
+    {
+      "id": "1667829983483",
+      "email": "123",
+      "password": "123",
+      "name": "123",
+      "createdAt": "11/7/2022"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1667850375219",
+      "userId": "1",
+      "title": "note3",
+      "body": "124412awdawd",
+      "createdAt": "11/7/2022"
+    },
+    {
+      "id": "1667850754133",
+      "userId": "1",
+      "title": "Title1",
+      "body": "awdawdawwd",
+      "createdAt": "11/7/2022"
+    }
+  ]
+}
