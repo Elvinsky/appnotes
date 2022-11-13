@@ -7,6 +7,7 @@ function Note(props) {
     const handleClick = () => {
         navigate(`/notes/${props.id}`);
     };
+
     const handleDelete = useCallback(() => {
         deleteHTTP(`http://localhost:5000/notes/${props.id}`);
         navigate('/notes');
@@ -19,7 +20,7 @@ function Note(props) {
         <div className="flex gap-1 border border-black p-2 border-t transition-all duration-300 hover:scale-105">
             <div
                 onClick={handleClick}
-                className="flex justify-between flex-row gap-3 p-1    w-60"
+                className="flex justify-between flex-row gap-3 p-1 w-60"
             >
                 <div className="flex flex-col gap-2">
                     <div>
@@ -32,16 +33,24 @@ function Note(props) {
             </div>
             <div className="flex flex-col gap-2 justify-between m-1">
                 <button
-                    className="px-1 bg-gray-300 hover:scale-105 w-fit"
+                    className="px-1 bg-gray-300 hover:scale-105 w-fit hover:bg-green-200"
                     onClick={handleDelete}
                 >
-                    D
+                    <img
+                        src={process.env.PUBLIC_URL + '/img/delete.png'}
+                        alt="D"
+                        className=" h-7 w-7"
+                    />
                 </button>
                 <button
-                    className="px-1 bg-gray-300 hover:scale-105 w-fit"
+                    className="px-1 bg-gray-300 hover:scale-105 w-fit hover:bg-green-200"
                     onClick={handleEdit}
                 >
-                    E
+                    <img
+                        src={process.env.PUBLIC_URL + '/img/edit.png'}
+                        alt="E"
+                        className=" h-7 w-7"
+                    />
                 </button>
             </div>
         </div>

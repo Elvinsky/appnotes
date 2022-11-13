@@ -33,6 +33,7 @@ function NoteEdit() {
         const note = {
             title: title,
             body: body,
+            createdAt: new Date().toLocaleDateString(),
         };
         patchHTTP(`http://localhost:5000/notes/${id}`, note);
         navigate('/notes');
@@ -43,6 +44,8 @@ function NoteEdit() {
                 {(note) => {
                     return (
                         <div className="p-1 border-t border-black">
+                            <h1 className=" text-center text-2xl">Edit</h1>
+
                             <BackButton url={'/notes'} />
                             <div className="flex flex-col gap-1 mt-1">
                                 <input

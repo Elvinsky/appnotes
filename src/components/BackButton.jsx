@@ -8,7 +8,7 @@ function BackButton({url}) {
     return (
         <button
             onClick={handleGoback}
-            className="p-1 bg-gray-200 hover:bg-green-200 border border-black"
+            className="p-1 bg-red-200 hover:bg-red-300 border border-black"
         >
             Back
         </button>

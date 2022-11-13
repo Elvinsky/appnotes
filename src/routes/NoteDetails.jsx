@@ -26,9 +26,10 @@ function NoteDetails() {
                 {(note) => {
                     return (
                         <div className="p-1 border-t border-black">
+                            <h1 className=" text-center text-2xl">Details</h1>
+
                             <BackButton url="/notes" />
                             <div className="flex flex-col gap-1 ">
-                                {/* <BackButton url="/notes" className="w-fit" /> */}
                                 <div className="bg-gray-200 w-fit p-1 mt-1">
                                     {note[0].title}
                                 </div>

@@ -9,6 +9,7 @@ import Notes from './routes/Notes';
 import NoteDetails, {loader as NotesDetailsLoader} from './routes/NoteDetails';
 import NoteEdit, {loader as NoteEditLoader} from './routes/NoteEdit';
 import NoteCreate from './routes/NoteCreate';
+import ErrorPage from './routes/ErrorPage';
 
 function App() {
     const router = createBrowserRouter([
@@ -44,7 +45,7 @@ function App() {
                 },
                 {
                     path: '*',
-                    element: <div>404 NOT FOUND</div>,
+                    element: <ErrorPage />,
                 },
             ],
         },
